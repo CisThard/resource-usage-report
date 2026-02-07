@@ -1,9 +1,7 @@
 #!/bin/bash
 
-INTERVAL="1"
-COUNT="5"
+./collect.sh
 
-vmstat $INTERVAL $COUNT > vmstat.txt
 #./awk.awk > output.txt # only extract cpu usage
 
 cpu_us=$(awk '{print $13}' vmstat.txt)
@@ -48,16 +46,16 @@ do
 	fi
 
 	cnt_us=$((cnt_us + 1))
-	echo $v
+	# echo $v
 	sum_us=$((sum_us + v))
 done
 
 cnt_us=$((cnt_us - 2))
 avg_us=$(awk "BEGIN {printf \"%.2f\", $sum_us/$cnt_us}")
 
-echo "sum of cnt_us = $cnt_us"
-echo "sum of cpu_us = $sum_us"
-echo "avg of cpu_us = $avg_us"
+# echo "sum of cnt_us = $cnt_us"
+# echo "sum of cpu_us = $sum_us"
+# echo "avg of cpu_us = $avg_us"
 
 for v in $cpu_sy
 do
@@ -72,16 +70,16 @@ do
 	fi
 
 	cnt_sy=$((cnt_sy + 1))
-	echo $v
+	# echo $v
 	sum_sy=$((sum_sy + v))
 done
 
 cnt_sy=$((cnt_sy - 2))
 avg_sy=$(awk "BEGIN {printf \"%.2f\", $sum_sy/$cnt_sy}")
 
-echo "sum of cnt_sy = $cnt_sy"
-echo "sum of cpu_sy = $sum_sy"
-echo "sum of avg_sy = $avg_sy"
+# echo "sum of cnt_sy = $cnt_sy"
+# echo "sum of cpu_sy = $sum_sy"
+# echo "sum of avg_sy = $avg_sy"
 
 cpu_avg_total=$(awk "BEGIN {printf \"%.2f\", ($sum_us + $sum_sy)/($cnt_us + $cnt_sy)}")
 
@@ -105,15 +103,15 @@ do
         fi
 
         cnt_free=$((cnt_free + 1))
-        echo $v
+        # echo $v
         sum_free=$((sum_free + v))
 done
 
 avg_free=$(awk "BEGIN {printf \"%.2f\", $sum_free/$cnt_free}")
 
-echo "sum of cnt_free = $cnt_free"
-echo "sum of cpu_free = $sum_free"
-echo "sum of avg_free = $avg_free"
+# echo "sum of cnt_free = $cnt_free"
+# echo "sum of cpu_free = $sum_free"
+# echo "sum of avg_free = $avg_free"
 
 for v in $mem_buff
 do
@@ -128,15 +126,15 @@ do
         fi
 
         cnt_buff=$((cnt_buff + 1))
-        echo $v
+        # echo $v
         sum_buff=$((sum_buff + v))
 done
 
 avg_buff=$(awk "BEGIN {printf \"%.2f\", $sum_buff/$cnt_buff}")
 
-echo "sum of cnt_buff = $cnt_buff"
-echo "sum of cpu_buff = $sum_buff"
-echo "sum of avg_buff = $avg_buff"
+# echo "sum of cnt_buff = $cnt_buff"
+# echo "sum of cpu_buff = $sum_buff"
+# echo "sum of avg_buff = $avg_buff"
 
 for v in $mem_cache
 do
@@ -151,20 +149,23 @@ do
         fi
 
         cnt_cache=$((cnt_cache + 1))
-        echo $v
+        # echo $v
         sum_cache=$((sum_cache + v))
 done
 
 avg_cache=$(awk "BEGIN {printf \"%.2f\", $sum_cache/$cnt_cache}")
 
-echo "sum of cnt_cache = $cnt_cache"
-echo "sum of cpu_cache = $sum_cache"
-echo "sum of avg_cache = $avg_cache"
+# echo "sum of cnt_cache = $cnt_cache"
+# echo "sum of cpu_cache = $sum_cache"
+# echo "sum of avg_cache = $avg_cache"
 
 mem_avg_total=$(awk "BEGIN {printf \"%.2f\", (($total_mem - $avg_free - $avg_buff - $avg_cache) / $total_mem) * 100 }")
-echo "mem avg usage = $mem_avg_total%" 
+echo "avg of mem usage = $mem_avg_total%" 
 
 #echo $mem_free
 #echo $mem_buff
 #echo $mem_cache
-echo $total_mem
+# echo $total_mem
+
+
+rm vmstat.txt
