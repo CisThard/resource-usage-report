@@ -169,3 +169,4 @@ echo "avg of mem usage = $mem_avg_total%"
 
 
 rm vmstat.txt
+
