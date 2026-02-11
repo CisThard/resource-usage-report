@@ -1,15 +1,21 @@
 #!/bin/bash
 
-./collect.sh
+set -e
+
+BASE_DIR='/home/se20n/resource-usage-report'
+
+$BASE_DIR/collect.sh
 
 #./awk.awk > output.txt # only extract cpu usage
 
-cpu_us=$(awk '{print $13}' vmstat.txt)
-cpu_sy=$(awk '{print $14}' vmstat.txt)
+cpu_us=$(awk '{print $13}' "$BASE_DIR/raw/vmstat.txt")
+cpu_sy=$(awk '{print $14}' "$BASE_DIR/raw/vmstat.txt")
 
-mem_free=$(awk '{print $4}' vmstat.txt)
-mem_buff=$(awk '{print $5}' vmstat.txt)
-mem_cache=$(awk '{print $6}' vmstat.txt)
+mem_free=$(awk '{print $4}' "$BASE_DIR/raw/vmstat.txt")
+mem_buff=$(awk '{print $5}' "$BASE_DIR/raw/vmstat.txt")
+mem_cache=$(awk '{print $6}' "$BASE_DIR/raw/vmstat.txt")
+
+TS=$(date +%Y%m%d_%H_%M_%S)
 
 
 sum_us=0
@@ -32,7 +38,7 @@ second_buff=true
 
 first_cache=true
 second_cache=true
-
+# need to check cnt value (2 or 3)
 for v in $cpu_us
 do
 
@@ -167,6 +173,9 @@ echo "avg of mem usage = $mem_avg_total%"
 #echo $mem_cache
 # echo $total_mem
 
+mv $BASE_DIR/reports/analyze.txt /home/se20n/resource-usage-report/reports/${TS}.txt
 
-rm vmstat.txt
+chmod 755 $BASE_DIR/raw/vmstat.txt
+rm -f "$BASE_DIR/raw/vmstat.txt"
+
 
