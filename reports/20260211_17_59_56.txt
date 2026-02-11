@@ -1,0 +1,5 @@
+avg of cpu usage = 5.39%
+/home/se20n/resource-usage-report/analyze.sh: line 113: -----io----: --: assignment requires lvalue (error token is "----")
+/home/se20n/resource-usage-report/analyze.sh: line 158: ------cpu-----: --: assignment requires lvalue (error token is "-----")
+avg of mem usage = 7.97%
+rm: cannot remove '/home/se20n/resource-usage-report/raw/vmstat.txt': Permission denied
