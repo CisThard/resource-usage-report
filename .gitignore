@@ -1,0 +1,6 @@
+/reports/*
+/raw/*
+
+!/reports/.gitkeep
+!/raw/.gitkeep
+

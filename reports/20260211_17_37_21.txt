@@ -1,3 +1,0 @@
-avg of cpu usage = 0.00%
-avg of mem usage = 2.70%
-mv: cannot stat 'analyze.txt': No such file or directory
