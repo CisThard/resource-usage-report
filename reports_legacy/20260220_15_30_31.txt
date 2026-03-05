@@ -1,0 +1,3 @@
+avg of cpu usage = 13.17%
+avg of mem usage = 4.33%
+/home/se20n/resource-usage-report/analyze.sh: line 181: /home/se20n/resource-usage-report/out/metrics.csv: Permission denied

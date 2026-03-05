@@ -1,0 +1,6 @@
+avg of cpu usage = -161.50%
+avg of mem usage = 4.77%
+rm: cannot remove '/home/se20n/resource-usage-report/raw/vmstat.txt': Permission denied
+avg of cpu usage = -88.00%
+avg of mem usage = 4.78%
+rm: cannot remove '/home/se20n/resource-usage-report/raw/vmstat.txt': Permission denied
