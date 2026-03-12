@@ -2,7 +2,7 @@
 
 set -e
 
-BASE_DIR='/home/se20n/resource-usage-report'
+BASE_DIR='/home/se2on/resource-usage-report'
 #FILE_PATH=$BASE_DIR/out/metrics.csv
 # $BASE_DIR/collect.sh
 # RAW=$BASE_DIR/raw/vmstat.txt
@@ -13,8 +13,8 @@ USAGE_DISK=0
 
 ROOT_PATH='/mnt/c'
 
-INTERVAL=1
-CYCLE=5
+INTERVAL=${INTERVAL:-1}
+CYCLE=${CYCLE:-5}
 
 check_cpu() {
         local usage=0
@@ -56,8 +56,8 @@ check_memory() {
 }
 
 generate_report() {
-        local timestamp=$(date "+%Y-%m-%d %H:%M:%S")
-        local target_file=$(date "+%Y-%m-%d %H:%M:%S")
+        local timestamp=$(date "+%Y-%m-%d_%H:%M:%S")
+        local target_file=$(date "+%Y-%m-%d_%H:%M:%S")
         check_cpu
         check_memory
 	check_disk
