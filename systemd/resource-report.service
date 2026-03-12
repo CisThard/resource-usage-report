@@ -1,0 +1,12 @@
+[Unit]
+Description=Resource Usage Report Script
+After=network.target
+
+[Service]
+Type=oneshot
+User=se2on
+ExecStart=/bin/bash /home/se2on/resource-usage-report/analyze.sh
+Environment="INTERVAL=1" "CYCLE=10"
+
+[Install]
+WantedBy=multi-user.target
